@@ -1,25 +1,31 @@
-import logo from './logo.svg';
-import '@styles/App.css';
+import { Routes, Route } from 'react-router-dom'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import Login from '@pages/Login'
+import Home from '@pages/Home'
+import { withAuthLayout, withNonAuthLayout } from '@components/layouts/withLayout'
+
+import '@styles/App.css'
+
+function App () {
+    return( 
+        <div className='app'>
+            <Routes>
+                {/* Anyone can see */}
+                <Route 
+                    path='/' 
+                    exact 
+                    element={withNonAuthLayout(<Login />)} 
+                />
+
+                {/* Authentecated */}
+                <Route 
+                    path='/home' 
+                    exact 
+                    element={withAuthLayout(<Home />)} 
+                />
+            </Routes>
+        </div>
+    )
 }
 
-export default App;
+export default App
