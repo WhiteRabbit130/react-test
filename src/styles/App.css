@@ -1,30 +1,121 @@
+* {
+    box-sizing: border-box;
+}
+
 body {
-  margin: 0px;
-  color: rgb(33, 43, 54);
-  line-height: 1.5;
-  font-size: 1rem;
-  font-family: "Public Sans", sans-serif;
-  font-weight: 400;
-  background-color: rgb(255, 255, 255);
+    margin: 0px;
+    color: rgb(33, 43, 54);
+    line-height: 1.5;
+    font-size: 1rem;
+    font-family: 'Public Sans', sans-serif;
+    font-weight: 400;
+    background-color: rgb(255, 255, 255);
 }
 
 .app {
-  height: 100%;
+    height: 100%;
 }
 
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+header {
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+    height: 64px;
+    background-color: aliceblue;
 }
 
+.profile {
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+    border: 0;
+    border-radius: 50%;
+    background-color: coral;
+    color: black;
+    float: right;
+    text-align: center;
+    margin-right: 15px;
+    right: 0;
+    cursor: pointer;
+    font-size: 1.2rem;
+    font-weight: 500;
+}
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.profile:hover {
+    background-color: rgba(255, 127, 80, 0.8);
+}
+
+.profile-box {
+    position: absolute;
+    top: 64px;
+    right: 15px;
+    width: 250px;
+    padding: 5px 25px;
+    word-wrap: break-word;
+    word-break: break-all;
+    border: 1px solid rgb(229, 234, 239);
+    box-shadow: rgba(145, 158, 171, 0.3) 0px 0px 2px 0px, rgba(145, 158, 171, 0.12) 0px 12px 24px -4px;
+    border-radius: 7px;
+    background-color: white;
+}
+
+.content {
+    width: 100%;
+    padding: 15px;
+}
+
+.logo {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.logo-png {
+    max-width: 60%;
+    max-height: 160px;
+}
+
+.filter {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    align-items: center;
+    height: 60px;
+}
+
+.f-select {
+    border: 1px solid rgb(229, 234, 239);
+    border-radius: 7px;
+    width: 100%;
+    height: 100%;
+    padding-left: 15px;
+    font-size: 20px;
+}
+
+.f-sort {
+    min-width: 100px;
+    height: 100%;
+    padding: 0;
+    margin-left: 20px;
+    text-align: center;
+    color: rgb(32, 178, 171);
+    border: 0;
+    border-radius: 7px;
+    background-color: inherit;
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.4;
+    cursor: pointer;
+}
+
+.f-sort:hover {
+    background-color: rgba(32, 178, 171, 0.05);
+}
+
+.api-running {
+    display: flex;
+    justify-content: center;
 }
