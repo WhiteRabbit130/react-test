@@ -61,6 +61,7 @@
 }
 
 .log-input {
+    position: relative;
     width: 100%;
     line-height: 1.57143;
     font-size: 0.875rem;
@@ -71,6 +72,32 @@
     box-sizing: content-box;
     border: 1px solid rgb(229, 234, 239);
     border-radius: 8px;
+}
+
+.input-div .password {
+    padding-right: 45px;
+}
+
+.showpass-icon {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    right: 5px;
+    cursor: pointer;
+    padding: 8px;
+    border: 0;
+    border-radius: 50%;
+    color: rgb(99, 115, 129);
+    background-color: white;
+}
+
+.showpass-icon:hover {
+    background-color: rgba(99, 115, 129, 0.08);
+}
+
+.showpass-icon > svg {
+    width: 20px;
+    height: 20px;
 }
 
 .fg-pass {
