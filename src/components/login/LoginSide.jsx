@@ -33,25 +33,6 @@ function LoginSide() {
 
         navigate('/home');
     }
-    // useEffect(() => {
-    //     setUser({
-    //         isLoggedIn: true,
-    //         userEmail: email,
-    //         userPassword: password
-    //     });
-    // }, [email, password]);
-    // const onLogin = () => {
-    //     setUser({
-    //         isLoggedIn: true,
-    //         userEmail: email,
-    //         userPassword: password,
-    //         firstName: "Daria",
-    //         lastName: "Andrei"
-    //     });
-
-    //     // console.log(user);
-    //     // navigate('/home');
-    // };
 
     return (
         <div className="login-side">
