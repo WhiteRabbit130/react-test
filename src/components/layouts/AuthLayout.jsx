@@ -5,11 +5,11 @@ import { userState } from "@store";
 
 function AuthLayout(props) {
     const [user] = useRecoilState(userState);
-    
-    if(!user.isLoggedIn) 
-        return <Navigate to='/' />
-    else 
-        return <>{ props.children }</>
+    console.log(user.isLoggedIn);
+    // if(!user.isLoggedIn) 
+    //     return <Navigate to='/' />
+    // else 
+    //     return <>{ props.children }</>
 }
 
 export default AuthLayout;

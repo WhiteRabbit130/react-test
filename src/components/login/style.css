@@ -34,6 +34,74 @@
     padding: 120px 16px;
 }
 
+.sign-title {
+    margin-bottom: 40px;
+}
+
+.t-sign-title {
+    margin: 0px;
+    font-weight: 700;
+    line-height: 1.5;
+    font-size: 1.25rem;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.input-div {
+    display: flex;
+    width: 100%;
+    position: relative;
+    color: rgb(33, 43, 54);
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.log-input {
+    width: 100%;
+    line-height: 1.57143;
+    font-size: 0.875rem;
+    font-weight: 400;
+    font-family: "Public Sans", sans-serif;
+    box-sizing: content-box;
+    padding: 16.5px 14px;
+    box-sizing: content-box;
+    border: 1px solid rgb(229, 234, 239);
+    border-radius: 8px;
+}
+
+.fg-pass {
+    margin: 0px;
+    line-height: 1.57143;
+    font-size: 0.875rem;
+    font-weight: 400;
+    color: rgb(33, 43, 54);
+    text-align: end;
+}
+
+.log-submit {
+    border: 0px;
+    margin: 0px;
+    padding: 8px 16px;
+    border-radius: 8px;
+    color: rgb(255, 255, 255);
+    background-color: rgb(118, 53, 220);
+    cursor: pointer;
+    width: 100%;
+    box-shadow: none;
+    height: 48px;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1.71429;
+    font-family: "Public Sans", sans-serif;
+}
+
+.log-submit:hover {
+    background-color: rgb(67, 26, 158);
+}
 
 @media (min-width: 900px) {
     .logo-div {
@@ -55,10 +123,20 @@
     .login-side {
         padding: 160px 64px 0px;
     }
+
+    .t-sign-title {
+        font-size: 1.5rem;
+    }
 }
 
-@media (min-width: 900px) {
+@media (min-width: 1200px) {
     .logo-vaultik {
         max-width: 480px;
+    }
+}
+
+@media (min-width: 1536px) {
+    .logo-vaultik {
+        max-width: 520px;
     }
 }

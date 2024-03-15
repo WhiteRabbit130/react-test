@@ -4,6 +4,7 @@ import Login from '@pages/Login'
 import Home from '@pages/Home'
 import { withAuthLayout, withNonAuthLayout } from '@components/layouts/withLayout'
 
+import "@fontsource/public-sans";
 import '@styles/App.css'
 
 function App () {
