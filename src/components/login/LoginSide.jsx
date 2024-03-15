@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { useNavigate } from "react-router-dom";
 
@@ -7,10 +7,10 @@ import { userState } from "@store";
 import './style.css';
 
 function LoginSide() {
-    const [ email, setEmail ] = useState('');
-    const [ password, setPassword ] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
-    const [ user, setUser ] = useRecoilState(userState);
+    const [setUser] = useRecoilState(userState);
 
     const navigate = useNavigate();
 
@@ -20,6 +20,7 @@ function LoginSide() {
     
     const handleSubmit = (e) => {
         e.preventDefault();
+
         setUser({
             isLoggedIn: true,
             userEmail: email,
