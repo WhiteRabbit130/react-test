@@ -21,13 +21,25 @@ function LoginSide() {
         setPassword(e.target.value);        
     };
     
-    useEffect(() => {
+    const handleSubmit = (e) => {
+        e.preventDefault();
         setUser({
             isLoggedIn: true,
             userEmail: email,
-            userPassword: password
+            userPassword: password,
+            firstName: "Daria",
+            lastName: "Andrei"
         });
-    }, [email, password]);
+
+        navigate('/home');
+    }
+    // useEffect(() => {
+    //     setUser({
+    //         isLoggedIn: true,
+    //         userEmail: email,
+    //         userPassword: password
+    //     });
+    // }, [email, password]);
     // const onLogin = () => {
     //     setUser({
     //         isLoggedIn: true,
@@ -46,7 +58,7 @@ function LoginSide() {
             <div className="sign-title">
                 <h4 className="t-sign-title">Sign in to Vaultik</h4>
             </div>
-            <form action='/home'>
+            <form onSubmit={handleSubmit}>
                 <div className="login-form">
                     <div className="input-div">
                         <input type="email" className='log-input' placeholder='Email address' value={email} onChange={handleEmailChange} required />
