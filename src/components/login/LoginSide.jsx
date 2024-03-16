@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilState } from "recoil";
 import { useNavigate } from "react-router-dom";
 
 import { userState } from "@store";
@@ -10,7 +10,7 @@ function LoginSide() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
-    const [setUser] = useRecoilState(userState);
+    const [user, setUser] = useRecoilState(userState);
 
     const navigate = useNavigate();
 
