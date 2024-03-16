@@ -1,5 +1,3 @@
-// import logo from '@assets/logo_login.svg';
-
 import './style.css';
 
 export default function Logo() {
