@@ -178,7 +178,7 @@ header {
     background-color: rgba(32, 178, 171, 0.05);
 }
 
-.api-running {
+.loading {
     display: flex;
     justify-content: center;
 }

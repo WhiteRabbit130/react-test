@@ -3,20 +3,29 @@ import { useRecoilState, useRecoilValue } from 'recoil'
 
 import { getProducts } from '@api'
 import { userState, getFullName } from '@store'
-import { IconCellRenderer, UrlCellRenderer } from '@components/table/TableCellRenderer'
+import {
+  IconCellRenderer,
+  UrlCellRenderer,
+  StringCellRenderer,
+} from '@components/table/TableCellRenderer'
 import TableWrapper from '@components/table/TableWrapper'
 
 import '@styles/App.css'
 
 const currencies = ['USD', 'GBP', 'HKD', 'SGD', 'KRW']
 const headers = [
-  { label: 'ID', dataKey: 'id' },
+  { label: 'ID', dataKey: 'id', renderer: StringCellRenderer },
   { label: 'Name', dataKey: 'product', renderer: IconCellRenderer },
   { label: 'Price', dataKey: 'price', mediaType: 'tablet' },
   { label: 'Product Key', dataKey: 'productKey', mediaType: 'desktop' },
   { label: 'Offer End', dataKey: 'offerEnd', mediaType: 'hd' },
   { label: 'Made At', dataKey: 'madeAt', mediaType: 'hd' },
-  { label: 'URLs', dataKey: 'images', renderer: UrlCellRenderer, mediaType: 'mobile' }
+  {
+    label: 'URLs',
+    dataKey: 'images',
+    renderer: UrlCellRenderer,
+    mediaType: 'mobile'
+  }
 ]
 
 function Home () {
@@ -28,6 +37,29 @@ function Home () {
   const [isVisible, setIsVisible] = useState(false)
   const profileButtonRef = useRef(null)
   const profileBoxRef = useRef(null)
+
+  let nonState = 0;
+  // const [nonState, setNonState] = useState(0);
+
+  useEffect(() => {
+    const handleClickOutside = event => {
+      // setNonState(nonState => nonState+1);
+      nonState++;
+      if (
+        profileBoxRef.current &&
+        !profileBoxRef.current.contains(event.target) &&
+        profileButtonRef.current !== event.target
+      ) {
+        setIsVisible(false)
+      }
+    }
+    console.log("I have been called.");
+
+    document.addEventListener('click', handleClickOutside)
+    return () => {
+      document.removeEventListener('click', handleClickOutside)
+    }
+  }, [])
 
   useEffect(() => {
     setLoading(true)
@@ -49,24 +81,6 @@ function Home () {
       setProducts(transform(data))
     })
   }, [currency])
-
-  useEffect(() => {
-    const handleClickOutside = event => {
-      if (
-        profileBoxRef.current &&
-        !profileBoxRef.current.contains(event.target) &&
-        profileButtonRef.current !== event.target
-      ) {
-        setIsVisible(false)
-      }
-    }
-
-    document.addEventListener('click', handleClickOutside)
-
-    return () => {
-      document.removeEventListener('click', handleClickOutside)
-    }
-  }, [])
 
   const handleCurrencyChange = e => {
     setCurrency(e.target.value)
@@ -118,11 +132,9 @@ function Home () {
         <div className='logo'>
           <img src='/logo_bcw.png' alt='logo-BCW' className='logo-png' />
         </div>
-        
+
         <div className='filter'>
           <select
-            name=''
-            id=''
             className='f-select'
             value={currency}
             onChange={handleCurrencyChange}
@@ -142,8 +154,8 @@ function Home () {
         </div>
 
         {isLoading ? (
-          <div className='api-running'>
-            <h4>API is running...</h4>
+          <div className='loading'>
+            <h4>Loading...</h4>
           </div>
         ) : (
           <TableWrapper headers={headers} data={products} />
