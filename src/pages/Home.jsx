@@ -3,10 +3,7 @@ import { useRecoilState, useRecoilValue } from 'recoil'
 
 import { getProducts } from '@api'
 import { userState, getFullName } from '@store'
-import {
-  IconCellRenderer,
-  UrlCellRenderer
-} from '@components/table/TableCellRenderer'
+import { IconCellRenderer, UrlCellRenderer } from '@components/table/TableCellRenderer'
 import TableWrapper from '@components/table/TableWrapper'
 
 import '@styles/App.css'
@@ -19,13 +16,7 @@ const headers = [
   { label: 'Product Key', dataKey: 'productKey', mediaType: 'desktop' },
   { label: 'Offer End', dataKey: 'offerEnd', mediaType: 'hd' },
   { label: 'Made At', dataKey: 'madeAt', mediaType: 'hd' },
-  {
-    label: 'URLs',
-    dataKey: 'images',
-    renderer: UrlCellRenderer,
-    mediaType: 'mobile'
-  }
-  // { label: 'Full Description', dataKey: 'fullDescription' }
+  { label: 'URLs', dataKey: 'images', renderer: UrlCellRenderer, mediaType: 'mobile' }
 ]
 
 function Home () {
@@ -127,10 +118,12 @@ function Home () {
           </div>
         )}
       </header>
+
       <div className='content'>
         <div className='logo'>
           <img src='/logo_bcw.png' alt='logo-BCW' className='logo-png' />
         </div>
+        
         <div className='filter'>
           <select
             name=''
@@ -152,6 +145,7 @@ function Home () {
             SORT BY RANK
           </button>
         </div>
+
         {isLoading ? (
           <div className='api-running'>
             <h4>API is running...</h4>
