@@ -94,6 +94,8 @@ header {
     width: 45px;
     height: 45px;
     border: 0;
+    -webkit-user-select: none;
+    user-select: none;
     border-radius: 50%;
     background-color: coral;
     color: black;
@@ -171,6 +173,8 @@ header {
     font-size: 1rem;
     font-weight: 500;
     line-height: 1.4;
+    -webkit-user-select: none;
+    user-select: none;
     cursor: pointer;
 }
 
