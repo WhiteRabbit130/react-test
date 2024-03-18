@@ -22,12 +22,9 @@ const headers = [
 function Home () {
   const [user] = useRecoilState(userState)
   const fullName = useRecoilValue(getFullName)
-
   const [isLoading, setLoading] = useState(false)
   const [currency, setCurrency] = useState('USD')
   const [products, setProducts] = useState([])
-  const [visibleRows, setVisibleRows] = useState([])
-
   const [isVisible, setIsVisible] = useState(false)
   const profileButtonRef = useRef(null)
   const profileBoxRef = useRef(null)
@@ -70,8 +67,6 @@ function Home () {
       document.removeEventListener('click', handleClickOutside)
     }
   }, [])
-
-  useEffect(() => {}, [visibleRows])
 
   const handleCurrencyChange = e => {
     setCurrency(e.target.value)
