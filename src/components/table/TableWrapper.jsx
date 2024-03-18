@@ -18,7 +18,7 @@ function TableWrapper ({ headers, data }) {
       <tbody>
         {data.length == 0 ? (
           <tr>
-          <td colSpan={headers.length} className='no-item'>
+            <td colSpan={headers.length} className='no-item'>
               <h4>No Item to display</h4>
             </td>
           </tr>

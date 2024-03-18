@@ -21,7 +21,7 @@ export const IconCellRenderer = ({ value, mediaType }) => {
         <BasicCellRenderer mediaType={mediaType}>
             <div className="iconCell">
                 <img src={value.icon} alt="coin-icon" width="48px" height="48px" />
-                <p className='body1'>{value.name}</p>
+                <p className='body1'>{ value.name }</p>
             </div>
         </BasicCellRenderer>
     )
