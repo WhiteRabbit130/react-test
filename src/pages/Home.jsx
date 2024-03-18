@@ -5,12 +5,13 @@ import { getProducts } from '@api'
 import { userState, getFullName } from '@store'
 import { IconCellRenderer, UrlCellRenderer } from '@components/table/TableCellRenderer'
 import TableWrapper from '@components/table/TableWrapper'
+import logoBcw from '@assets/logo_bcw.png';
 
 import '@styles/App.css'
 
 const currencies = ['USD', 'GBP', 'HKD', 'SGD', 'KRW']
 const headers = [
-  { label: 'ID', dataKey: 'id', renderer: StringCellRenderer },
+  { label: 'ID', dataKey: 'id' },
   { label: 'Name', dataKey: 'product', renderer: IconCellRenderer },
   { label: 'Price', dataKey: 'price', mediaType: 'tablet' },
   { label: 'Product Key', dataKey: 'productKey', mediaType: 'desktop' },
@@ -126,7 +127,7 @@ function Home () {
 
       <div className='content'>
         <div className='logo'>
-          <img src='/logo_bcw.png' alt='logo-BCW' className='logo-png' />
+          <img src={logoBcw} alt='logo-BCW' className='logo-png' />
         </div>
 
         <div className='filter'>
