@@ -3,11 +3,7 @@ import { useRecoilState, useRecoilValue } from 'recoil'
 
 import { getProducts } from '@api'
 import { userState, getFullName } from '@store'
-import {
-  IconCellRenderer,
-  UrlCellRenderer,
-  StringCellRenderer,
-} from '@components/table/TableCellRenderer'
+import { IconCellRenderer, UrlCellRenderer } from '@components/table/TableCellRenderer'
 import TableWrapper from '@components/table/TableWrapper'
 
 import '@styles/App.css'
