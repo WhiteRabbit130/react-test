@@ -10,7 +10,6 @@ function Login() {
             <Logo />
             <LogoSide />
             <LoginSide />
-            {/* <button onClick={onLogin}>Sign In</button> */}
         </div>
     )
 }
