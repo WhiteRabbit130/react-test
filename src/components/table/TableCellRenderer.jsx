@@ -1,17 +1,19 @@
+import { Box, Typography, TableCell } from '@mui/material';
+
 import './style.css';
 
 export const BasicCellRenderer = ({ children,  mediaType}) => {
     return (
-        <td className='cell' media-type={mediaType}>
+        <TableCell media-type={mediaType}>
             { children }
-        </td>
+        </TableCell>
     )
 }
 
 export const StringCellRenderer = ({ value, mediaType }) => {
     return (
         <BasicCellRenderer mediaType={mediaType}>
-            <h6>{ value }</h6>
+            <Typography color="textSecondary" variant='body2'>{ value }</Typography>
         </BasicCellRenderer>
     )
 }
@@ -19,10 +21,10 @@ export const StringCellRenderer = ({ value, mediaType }) => {
 export const IconCellRenderer = ({ value, mediaType }) => {
     return (
         <BasicCellRenderer mediaType={mediaType}>
-            <div className="iconCell">
+            <Box display='flex' gap='10px' alignItems='center'>
                 <img src={value.icon} alt="coin-icon" width="48px" height="48px" />
-                <p className='body1'>{ value.name }</p>
-            </div>
+                <Typography variant='body2'>{ value.name }</Typography>
+            </Box>
         </BasicCellRenderer>
     )
 }
@@ -30,13 +32,13 @@ export const IconCellRenderer = ({ value, mediaType }) => {
 export const UrlCellRenderer = ({ value, mediaType }) => {
     return (
         <BasicCellRenderer mediaType={mediaType}>
-            <div className="cellText">
+            <Box className="cellText">
                 {value.map((url, index) => (
-                    <div key={url || "" + index}>
+                    <Typography key={url || "" + index}>
                         <a href={url} target='#'>{ url }</a>
-                    </div>
+                    </Typography>
                 ))}
-            </div>
+            </Box>
         </BasicCellRenderer>
     )
 }

@@ -1,165 +1,183 @@
 import { useEffect, useState, useRef } from 'react'
 import { useRecoilState, useRecoilValue } from 'recoil'
+import {
+Box,
+Button,
+FormControl,
+InputLabel,
+Select,
+MenuItem,
+// SelectChangeEvent,
+TablePagination,
+CircularProgress
+} from '@mui/material'
 
 import { getProducts } from '@api'
+import FlexBox from '@components/FlexBox'
 import { userState, getFullName } from '@store'
-import { IconCellRenderer, UrlCellRenderer } from '@components/table/TableCellRenderer'
+import {
+IconCellRenderer,
+UrlCellRenderer
+} from '@components/table/TableCellRenderer'
 import TableWrapper from '@components/table/TableWrapper'
-import logoBcw from '@assets/logo_bcw.png';
+import logoBcw from '@assets/logo_bcw.png'
 
 import '@styles/App.css'
 
 const currencies = ['USD', 'GBP', 'HKD', 'SGD', 'KRW']
 const headers = [
-  { label: 'ID', dataKey: 'id' },
-  { label: 'Name', dataKey: 'product', renderer: IconCellRenderer },
-  { label: 'Price', dataKey: 'price', mediaType: 'tablet' },
-  { label: 'Product Key', dataKey: 'productKey', mediaType: 'desktop' },
-  { label: 'Offer End', dataKey: 'offerEnd', mediaType: 'hd' },
-  { label: 'Made At', dataKey: 'madeAt', mediaType: 'hd' },
-  {
+{ label: 'ID', dataKey: 'id' },
+{ label: 'Name', dataKey: 'product', renderer: IconCellRenderer },
+{ label: 'Price', dataKey: 'price', mediaType: 'tablet' },
+{ label: 'Product Key', dataKey: 'productKey', mediaType: 'desktop' },
+{ label: 'Offer End', dataKey: 'offerEnd', mediaType: 'hd' },
+{ label: 'Made At', dataKey: 'madeAt', mediaType: 'hd' },
+{
     label: 'URLs',
     dataKey: 'images',
     renderer: UrlCellRenderer,
     mediaType: 'mobile'
-  }
+}
 ]
 
 function Home () {
-  const [user] = useRecoilState(userState)
-  const fullName = useRecoilValue(getFullName)
-  const [isLoading, setLoading] = useState(false)
-  const [currency, setCurrency] = useState('USD')
-  const [products, setProducts] = useState([])
-  const [isVisible, setIsVisible] = useState(false)
-  const profileButtonRef = useRef(null)
-  const profileBoxRef = useRef(null)
+const [user] = useRecoilState(userState)
+const fullName = useRecoilValue(getFullName)
+const [isLoading, setLoading] = useState(false)
+const [currency, setCurrency] = useState('USD')
+const [products, setProducts] = useState([])
+const [isVisible, setIsVisible] = useState(false)
+const profileButtonRef = useRef(null)
+const profileBoxRef = useRef(null)
 
-  let nonState = 0;
-  // const [nonState, setNonState] = useState(0);
-
-  useEffect(() => {
+useEffect(() => {
     const handleClickOutside = event => {
-      // setNonState(nonState => nonState+1);
-      nonState++;
-      if (
+    if (
         profileBoxRef.current &&
         !profileBoxRef.current.contains(event.target) &&
         profileButtonRef.current !== event.target
-      ) {
+    ) {
         setIsVisible(false)
-      }
     }
-    console.log("I have been called.");
+    }
+    console.log('I have been called.')
 
     document.addEventListener('click', handleClickOutside)
     return () => {
-      document.removeEventListener('click', handleClickOutside)
+    document.removeEventListener('click', handleClickOutside)
     }
-  }, [])
+}, [])
 
-  useEffect(() => {
+useEffect(() => {
     setLoading(true)
     getProducts().then(response => {
-      const data = response.filter(product => product.currency === currency)
-      const transform = _data => {
+    const data = response.filter(product => product.currency === currency)
+    const transform = _data => {
         return _data.map(product => {
-          return {
+        return {
             ...product,
             product: {
-              name: product.name,
-              icon: product.images[0]
+            name: product.name,
+            icon: product.images[0]
             }
-          }
+        }
         })
-      }
+    }
 
-      setLoading(false)
-      setProducts(transform(data))
+    setLoading(false)
+    setProducts(transform(data))
     })
-  }, [currency])
+}, [currency])
 
-  const handleCurrencyChange = e => {
+const handleCurrencyChange = e => {
     setCurrency(e.target.value)
-  }
+}
 
-  const handleSortByName = () => {
+const handleSortByName = () => {
     const sortedProducts = products.sort((a, b) => {
-      const nameA = a.name.toLowerCase()
-      const nameB = b.name.toLowerCase()
-      if (nameA < nameB) {
+    const nameA = a.name.toLowerCase()
+    const nameB = b.name.toLowerCase()
+    if (nameA < nameB) {
         return -1
-      }
-      if (nameA > nameB) {
+    }
+    if (nameA > nameB) {
         return 1
-      }
-      return 0
+    }
+    return 0
     })
     setProducts([...sortedProducts])
-  }
+}
 
-  const handleSortByID = () => {
+const handleSortByID = () => {
     const sortedProducts = products.sort((a, b) => a.id - b.id)
     setProducts([...sortedProducts])
-  }
+}
 
-  return (
+return (
     <main>
-      <header>
-        <button
-          className='profile'
-          onClick={() => setIsVisible(!isVisible)}
-          ref={profileButtonRef}
+    <header>
+        <Button
+        className='profile'
+        onClick={() => setIsVisible(!isVisible)}
+        ref={profileButtonRef}
         >
-          {fullName}
-        </button>
+        {fullName}
+        </Button>
         {isVisible && (
-          <div className='profile-box' ref={profileBoxRef}>
+        <div className='profile-box' ref={profileBoxRef}>
             <h4>
-              {user.firstName} {user.lastName}
+            {user.firstName} {user.lastName}
             </h4>
             <p>
-              <b>Email:</b> {user.userEmail}
+            <b>Email:</b> {user.userEmail}
             </p>
-          </div>
+        </div>
         )}
-      </header>
+    </header>
 
-      <div className='content'>
+    <div className='content'>
         <div className='logo'>
-          <img src={logoBcw} alt='logo-BCW' className='logo-png' />
+        <img src={logoBcw} alt='logo-BCW' className='logo-png' />
         </div>
 
-        <div className='filter'>
-          <select
-            className='f-select'
-            value={currency}
-            onChange={handleCurrencyChange}
-          >
-            {currencies.map((_currency, index) => (
-              <option key={index} value={_currency}>
-                {_currency}
-              </option>
-            ))}
-          </select>
-          <button className='f-sort' onClick={handleSortByName}>
-            SORT BY NAME
-          </button>
-          <button className='f-sort' onClick={handleSortByID}>
-            SORT BY RANK
-          </button>
-        </div>
+        <FlexBox gap='10px'>
+            <Box sx={{ width: '100%' }}>
+                <FormControl fullWidth>
+                    <InputLabel id="currency-select-label">Currency</InputLabel>
+                    <Select
+                        id='currency-select'
+                        value={currency}
+                        label='currency'
+                        onChange={handleCurrencyChange}
+                    >
+                        {currencies.map((_currency, index) => (
+                            <MenuItem key={index} value={_currency}>
+                            {_currency}
+                            </MenuItem>
+                        ))}
+                    </Select>
+                </FormControl>
+                
+            </Box>
+
+            <Button onClick={handleSortByName}>
+                SORT BY NAME
+            </Button>
+            <Button onClick={handleSortByID}>
+                SORT BY RANK
+            </Button>
+        </FlexBox>
 
         {isLoading ? (
-          <div className='loading'>
+        <div className='loading'>
             <h4>Loading...</h4>
-          </div>
+        </div>
         ) : (
-          <TableWrapper headers={headers} data={products} />
+        <TableWrapper headers={headers} data={products} />
         )}
-      </div>
+    </div>
     </main>
-  )
+)
 }
 
 export default Home
