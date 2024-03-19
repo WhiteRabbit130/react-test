@@ -116,10 +116,13 @@ header {
     position: absolute;
     top: 64px;
     right: 15px;
-    width: 250px;
+    width: 200px;
     padding: 5px 25px;
     word-wrap: break-word;
     word-break: break-all;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
     border: 1px solid rgb(229, 234, 239);
     box-shadow: rgba(145, 158, 171, 0.3) 0px 0px 2px 0px, rgba(145, 158, 171, 0.12) 0px 12px 24px -4px;
     border-radius: 7px;
